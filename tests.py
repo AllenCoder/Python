@@ -1,6 +1,6 @@
 import jieba.analyse
 
-path = 'test.txt'
+path = '精绝古城.txt'
 
 fp = open(path,'r',encoding='utf-8')
 content = fp.read()

@@ -1,14 +1,30 @@
-from lxml import html
-import requests
+def test_var_args(farg, *args):
+    print("formal arg:", farg)
+    for arg in args:
+        print("another arg:", arg)
 
-page = requests.get('http://econpy.pythonanywhere.com/ex/001.html')
-tree = html.fromstring(page.text)
-# 这将创建buyers的列表：
-buyers = tree.xpath('//div[@title="buyer-name"]/text()')
-# 这将创建prices的列表：
-prices = tree.xpath('//span[@class="item-price"]/text()')
 
-print('Buyers: ', buyers)
+test_var_args(1, "two", 3)
 
-print('Prices: ', prices)
 
+def test_var_kwargs(farg, **kwargs):
+    print("formal arg:", farg)
+    for key in kwargs:
+        print("another keyword arg: %s: %s" % (key, kwargs[key]))
+
+
+def test_var_args(farg, *args, **kwargs):
+    print("formal arg:", farg)
+    for arg in args:
+        print("another arg:", arg)
+    print(kwargs)
+
+
+test_var_args(1, "two", 3, myarg2="two", myarg3=3)
+test_var_kwargs(farg=1, myarg2="two", myarg3=3)
+
+
+
+# 这是一种特殊的语法，在函数定义中使用*args和**kwargs传递可变长参数.
+# *args用作传递非命名键值可变长参数列表（位置参数）;
+# **kwargs用作传递键值可变长参数列表
